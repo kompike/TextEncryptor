@@ -119,8 +119,35 @@ public class TextEncryptorImpl implements TextEncryptor {
         return charactersGrid;
     }
 
+    /**
+     * Creates encoded string from the grid of characters
+     *
+     * @param charactersGrid Grid of characters to be converted
+     * @return Encoded message
+     */
     private String createEncodedMessage(char[][] charactersGrid) {
 
-        return null;
+        final StringBuilder result = new StringBuilder();
+
+        final int gridColumnsNumber = charactersGrid[0].length;
+
+        for (int j = 0; j < gridColumnsNumber; j++) {
+
+            for (char[] chars : charactersGrid) {
+
+                if (chars[j] != 0) {
+
+                    result.append(chars[j]);
+                }
+            }
+            result.append(" ");
+        }
+
+        if (log.isInfoEnabled()) {
+
+            log.info("Encoded message: " + result.toString().trim());
+        }
+
+        return result.toString().trim();
     }
 }
