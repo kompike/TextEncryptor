@@ -33,11 +33,9 @@ public class TextEncryptorTest {
     @Test
     public void testFirstExampleTextEncryption() {
 
-        final String encodedMessage = "imtgdvs fearwer mayoogo anouuio" +
-                " ntnnlvt wttddes aohghn sseoau";
+        final String textToBeEncrypted = "have a nice day";
 
-        final String textToBeEncrypted = "if man was meant to stay " +
-                "on the ground god would have given us roots";
+        final String encodedMessage = "hae and via ecy";
 
         assertEquals("Encrypted message does not equal expected text.",
                 encodedMessage, encryptor.encrypt(textToBeEncrypted));
@@ -46,11 +44,9 @@ public class TextEncryptorTest {
     @Test
     public void testSecondExampleTextEncryption() {
 
-        final String encodedMessage = "imtgdvs fearwer mayoogo anouuio" +
-                " ntnnlvt wttddes aohghn sseoau";
+        final String textToBeEncrypted = "feed the dog";
 
-        final String textToBeEncrypted = "if man was meant to stay " +
-                "on the ground god would have given us roots";
+        final String encodedMessage = "fto ehg ee dd";
 
         assertEquals("Encrypted message does not equal expected text.",
                 encodedMessage, encryptor.encrypt(textToBeEncrypted));
@@ -59,11 +55,9 @@ public class TextEncryptorTest {
     @Test
     public void testThirdExampleTextEncryption() {
 
-        final String encodedMessage = "imtgdvs fearwer mayoogo anouuio" +
-                " ntnnlvt wttddes aohghn sseoau";
+        final String textToBeEncrypted = "chillout";
 
-        final String textToBeEncrypted = "if man was meant to stay " +
-                "on the ground god would have given us roots";
+        final String encodedMessage = "clu hlt io";
 
         assertEquals("Encrypted message does not equal expected text.",
                 encodedMessage, encryptor.encrypt(textToBeEncrypted));

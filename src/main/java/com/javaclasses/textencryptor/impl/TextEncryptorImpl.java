@@ -20,9 +20,9 @@ public class TextEncryptorImpl implements TextEncryptor {
 
         checkNotNull(text, "Encrypted argument must not equal null.");
 
-        checkArgument(!text.equals(""), "Encrypted text must not be empty.");
-
         final String textWithoutWhitespaces = removeWhitespaces(text);
+
+        checkArgument(!textWithoutWhitespaces.equals(""), "Encrypted text must not be empty.");
 
         if (log.isInfoEnabled()) {
 
@@ -71,6 +71,7 @@ public class TextEncryptorImpl implements TextEncryptor {
 
             log.info("Grid rows number: " + gridRowsNumber);
         }
+
         final int gridColumnsNumber = (int) ceil(sqrt(textSize));
 
         if (log.isInfoEnabled()) {
@@ -79,6 +80,7 @@ public class TextEncryptorImpl implements TextEncryptor {
         }
 
         if (gridColumnsNumber * gridRowsNumber < textSize) {
+
             gridRowsNumber = gridColumnsNumber;
         }
 
