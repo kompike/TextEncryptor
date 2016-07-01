@@ -60,24 +60,14 @@ public class TextEncryptorImpl implements TextEncryptor {
 
         if (log.isInfoEnabled()) {
 
-            log.info("Creating characters grid...");
+            log.info("Creating grid of characters...");
         }
 
         final int textSize = text.length();
 
         int gridRowsNumber = (int) floor(sqrt(textSize));
 
-        if (log.isInfoEnabled()) {
-
-            log.info("Grid rows number: " + gridRowsNumber);
-        }
-
         final int gridColumnsNumber = (int) ceil(sqrt(textSize));
-
-        if (log.isInfoEnabled()) {
-
-            log.info("Grid columns number: " + gridColumnsNumber);
-        }
 
         if (gridColumnsNumber * gridRowsNumber < textSize) {
 
@@ -87,26 +77,17 @@ public class TextEncryptorImpl implements TextEncryptor {
         final char[][] charactersGrid =
                 new char[gridRowsNumber][gridColumnsNumber];
 
+        if (log.isInfoEnabled()) {
+
+            log.info("New grid of characters created with %i rows and %i columns.",
+                    gridRowsNumber, gridColumnsNumber);
+        }
+
         for (int i = 0; i < gridRowsNumber; i++) {
-
-            if (log.isDebugEnabled()) {
-
-                log.debug("Current i value: " + i);
-            }
 
             for (int j = 0; j < gridColumnsNumber; j++) {
 
-                if (log.isDebugEnabled()) {
-
-                    log.debug("Current j value: " + j);
-                }
-
                 if ((i * gridColumnsNumber + j) < textSize) {
-
-                    if (log.isDebugEnabled()) {
-
-                        log.debug("Current char position:" + i * gridColumnsNumber + j);
-                    }
 
                     charactersGrid[i][j] =
                             text.charAt(i * gridColumnsNumber + j);
@@ -130,6 +111,11 @@ public class TextEncryptorImpl implements TextEncryptor {
      * @return Encoded message
      */
     private String createEncodedMessage(char[][] charactersGrid) {
+
+        if (log.isInfoEnabled()) {
+
+            log.info("Grid encoding started...");
+        }
 
         final StringBuilder result = new StringBuilder();
 
