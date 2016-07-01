@@ -48,7 +48,9 @@ public class TextEncryptorImpl implements TextEncryptor {
         }
 
         return textWithWhitespaces.replaceAll("\\s+", "");
-    }/**
+    }
+
+    /**
      * Converts given text to the grid of characters
      *
      * @param text Text to be converted
@@ -76,7 +78,7 @@ public class TextEncryptorImpl implements TextEncryptor {
             log.info("Grid columns number: " + gridColumnsNumber);
         }
 
-        while (gridColumnsNumber * gridRowsNumber < textSize) {
+        if (gridColumnsNumber * gridRowsNumber < textSize) {
             gridRowsNumber = gridColumnsNumber;
         }
 
