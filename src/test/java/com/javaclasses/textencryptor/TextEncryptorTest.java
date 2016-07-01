@@ -4,6 +4,8 @@ import com.javaclasses.textencryptor.impl.TextEncryptorImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class TextEncryptorTest {
 
     private final TextEncryptor encryptor = new TextEncryptorImpl();
@@ -16,7 +18,7 @@ public class TextEncryptorTest {
 
     @Test
     public void testTextEncryption() {
-        Assert.assertEquals("Encrypted message does not equal expected text.",
+        assertEquals("Encrypted message does not equal expected text.",
                 encodedMessage, encryptor.encrypt(textToBeEncrypted));
     }
 }
