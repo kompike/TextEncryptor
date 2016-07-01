@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class TextEncryptorTest {
 
@@ -60,5 +61,29 @@ public class TextEncryptorTest {
 
         assertEquals("Encrypted message does not equal expected text.",
                 encodedMessage, encryptor.encrypt(textToBeEncrypted));
+    }
+
+    @Test
+    public void testNullArgumentEncryption() {
+
+        try {
+            encryptor.encrypt(null);
+            fail("NullPointerException was not thrown");
+        } catch (NullPointerException e) {
+            assertEquals("Wrong message for null argument encryption.",
+                    "Encrypted argument must not equal null.",  e.getMessage());
+        }
+    }
+
+    @Test
+    public void testEmptyArgumentEncryption() {
+
+        try {
+            encryptor.encrypt("");
+            fail("IllegalArgumentException was not thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Wrong message for empty text encryption.",
+                    "Encrypted text must not be empty.",  e.getMessage());
+        }
     }
 }
