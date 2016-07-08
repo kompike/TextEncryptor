@@ -20,18 +20,28 @@ public class TextEncryptorImpl implements TextEncryptor {
 
         checkNotNull(text, "Encrypted argument must not equal null.");
 
+        if (log.isInfoEnabled()) {
+
+            log.info("Start encrypting text: " + text);
+        }
+
         final String textWithoutWhitespaces = removeWhitespaces(text);
 
         checkArgument(!textWithoutWhitespaces.equals(""), "Encrypted text must not be empty.");
 
-        if (log.isInfoEnabled()) {
-
-            log.info("Text without whitespaces: " + textWithoutWhitespaces);
-        }
-
         final char[][] charactersGrid = createGrid(textWithoutWhitespaces);
 
-        return createEncodedMessage(charactersGrid);
+        try {
+
+            return createEncodedMessage(charactersGrid);
+
+        } finally {
+
+            if (log.isInfoEnabled()) {
+
+                log.info("Text successfully encrypted.");
+            }
+        }
     }
 
     /**
@@ -47,7 +57,17 @@ public class TextEncryptorImpl implements TextEncryptor {
             log.info("Removing spaces...");
         }
 
-        return textWithWhitespaces.replaceAll("\\s+", "");
+        try {
+
+            return textWithWhitespaces.replaceAll("\\s+", "");
+
+        } finally {
+
+            if (log.isInfoEnabled()) {
+
+                log.info("Whitespaces removed." );
+            }
+        }
     }
 
     /**
@@ -79,7 +99,7 @@ public class TextEncryptorImpl implements TextEncryptor {
 
         if (log.isInfoEnabled()) {
 
-            log.info("New grid of characters created with %i rows and %i columns.",
+            log.info("New grid of characters created with {} rows and {} columns.",
                     gridRowsNumber, gridColumnsNumber);
         }
 
@@ -101,7 +121,16 @@ public class TextEncryptorImpl implements TextEncryptor {
             }
         }
 
-        return charactersGrid;
+        try {
+
+            return charactersGrid;
+
+        } finally {
+
+            if (log.isInfoEnabled()) {
+                log.info("Grid of characters successfully created.");
+            }
+        }
     }
 
     /**
@@ -133,11 +162,17 @@ public class TextEncryptorImpl implements TextEncryptor {
             result.append(" ");
         }
 
-        if (log.isInfoEnabled()) {
+        final String resultMessage = result.toString().trim();
 
-            log.info("Encoded message: " + result.toString().trim());
+        try {
+
+            return resultMessage;
+
+        } finally {
+
+            if (log.isInfoEnabled()) {
+                log.info("Encoded message successfully created: " + resultMessage);
+            }
         }
-
-        return result.toString().trim();
     }
 }
